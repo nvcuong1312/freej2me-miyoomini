@@ -133,7 +133,7 @@ public abstract class Canvas extends Displayable
 		return "-";
 	}
 
-	public boolean hasPointerEvents() { return true; }
+	public boolean hasPointerEvents() { return false; }
 
 	public boolean hasPointerMotionEvents() { return false; }
 
