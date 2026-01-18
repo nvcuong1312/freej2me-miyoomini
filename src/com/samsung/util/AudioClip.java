@@ -26,13 +26,13 @@ public class AudioClip
 
 	public AudioClip(int clipType, byte[] audioData, int audioOffset, int audioLength)
 	{
-		System.out.println("Samsung AudioClip");
+		//System.out.println("Samsung AudioClip");
 		type = clipType;
 	}
 
 	public AudioClip(int clipType, String filename)
 	{
-		System.out.println("Samsung AudioClip");
+		//System.out.println("Samsung AudioClip");
 		type = clipType;
 	}
 
