@@ -74,20 +74,7 @@ public abstract class GameCanvas extends Canvas
 
 	public int getKeyStates() // found in use
 	{
-		/* // 获取当前线程对象
-		Thread currentThread = Thread.currentThread();
-		
-		// 获取当前线程的ID
-		long threadId = currentThread.getId();
-		
-		// 打印线程ID
-		System.out.println("获取keystate线程的ID是：" + threadId); */
-		//当前线程跟更新keystate的不是一个线程
-		//这个函数不能运行太快，快了还没来得及检测就无了
-		// int t = Mobile.getPlatform().keyState;
-		// Mobile.getPlatform().keyState = 0;
 		int t=Mobile.getPlatform().getKeyState();
-		//System.out.println("获取按键状态");
 		return t;
 	}
 	

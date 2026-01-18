@@ -19,7 +19,6 @@ package javax.microedition.lcdui.game;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Graphics;
 
-///图层
 public abstract class Layer
 {
 	protected int x;
@@ -65,7 +64,6 @@ public abstract class Layer
 	
 	public Image getLayerImage() { return image; }
 
-	//把自身内容画到自带的image里
 	public void render() { 
 		this.paint(image.platformImage.getGraphics()); 
 	}

@@ -60,7 +60,6 @@ public class AndroidRecordStoreManager implements RecordStoreManager {
 
 	public static final String ILLEGAL_FILENAME_CHARS = "[/\\\\:*?\"<>|]";
 	
-	//数据存储路径
 	private static String dataDir="./rms/"+Mobile.getPlatform().loader.suitename;
 
 	private Map<String, Object> recordStores = null;

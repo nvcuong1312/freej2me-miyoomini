@@ -103,7 +103,6 @@ public class ActTableImpl {
 		final  Map<Integer, Integer> dynamic = act.dynamic;
 		if (dynamic != null) {
 			int iFrame = frame < 0 ? 0 : frame >> 16;
-			// 获取键的集合  
 			List<Integer> keysList = new ArrayList<>(dynamic.keySet()); 
 			
 			for (int i = keysList.size() - 1; i >= 0; i--) {

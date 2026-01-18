@@ -67,19 +67,6 @@ import ws.schild.jave.encode.EncodingAttributes;
 import ws.schild.jave.info.MultimediaInfo;
 import ws.schild.jave.MultimediaObject; */
 
-/**
-所谓的stop的使用,其实是返回prefetched(缓冲读取)的状态,因此并没有所谓的stopped的状态.一般如果播放完毕后会自动回到prefetched(缓冲读取)的状态
-unrealized(没有实现)----->realized(实现)----->prefetched(缓冲读取)----->started(播放状态)   
-                  realize()            prefetch()                 start()
-
-started(播放状态)----->prefetched(缓冲读取)            realized(实现)----->unrealized(没有实现)
-                 stop()                                           deallocate()释放资源      
-
-以上4个状态随时都可以用close()返回到closed状态
-
-
-**/
-
 public class PlatformPlayer implements Player
 {
 
@@ -167,7 +154,7 @@ public class PlatformPlayer implements Player
 		}
 		catch(Exception e)
 		{
-			System.out.println("字节数组转md5出错:"+e.getMessage());
+			System.out.println("encodeMD5String:"+e.getMessage());
 		}
         return sb.toString();
 
@@ -365,7 +352,7 @@ public class PlatformPlayer implements Player
 				
 				// ts=(int)Math.ceil((double)mlength/1000000);
 				
-				// System.out.println("微秒:"+mlength + " 秒:"+ts+" bgm:"+bgmFileName); 
+				// System.out.println("+mlength +ts+" bgm:"+bgmFileName); 
 				// midi.close();
 				
 				
@@ -385,12 +372,9 @@ public class PlatformPlayer implements Player
 			
 			
 			try{
-				
-				//System.out.println(bgmFileName+"开始设置播放");
-				
 				byte[] frame = new byte[100];
 				frame[0]='$';//36
-				frame[1]='C';//初始化
+				frame[1]='C';
 					
 				frame[2]=(byte)(loops);
 				frame[3]=(byte)(loops >> 8);
@@ -409,14 +393,14 @@ public class PlatformPlayer implements Player
 					//name[i]=fname[i];
 				}
 				
-				// if(isinit)//初始化过
+				// if(isinit)
 				// {
-					// frame[1]='R';//继续
+					// frame[1]='R';
 					
 				// }
 				// else
 				// {
-					// frame[1]='C';//初始化
+					// frame[1]='C';
 					
 					// frame[2]=(byte)(loops);
 					// frame[3]=(byte)(loops >> 8);
@@ -448,12 +432,11 @@ public class PlatformPlayer implements Player
 					// TimerTask task = new TimerTask() {
 						// @Override
 						// public void run() {
-							// System.out.println("定时任务执行一次");
 							
 							// notifyListeners(PlayerListener.END_OF_MEDIA, 0);	
 						// }
 					// };
-					// timer.schedule(task, ts); // 5秒后执行任务
+					// timer.schedule(task, ts);
 				// }
 				
 				
@@ -466,7 +449,7 @@ public class PlatformPlayer implements Player
 			
 			state = Player.STARTED;
 			
-			//System.out.println("开始:"+bgmFileName+" loop:"+loops);
+			//System.out.println(bgmFileName+" loop:"+loops);
 		}
 
 		public void stop()
@@ -489,7 +472,7 @@ public class PlatformPlayer implements Player
 				}
 				
 				
-				//System.out.println(bgmFileName+"停止");
+				//System.out.println(bgmFileName);
 			}
 			catch(Exception e)
 			{
@@ -500,7 +483,7 @@ public class PlatformPlayer implements Player
 			
 			state = Player.PREFETCHED;
 			
-			//System.out.println("关闭:"+bgmFileName+" loop:"+loops);
+			//System.out.println(bgmFileName+" loop:"+loops);
 		}
 		public void deallocate()
 		{
@@ -515,7 +498,7 @@ public class PlatformPlayer implements Player
 				// frame[1]='S';//83
 				// Anbu.au.frame.write(frame);
 				// Anbu.au.frame.flush();
-				//System.out.println(bgmFileName+"停止");
+				//System.out.println(bgmFileName);
 			// }
 			// catch(Exception e)
 			// {
@@ -528,7 +511,6 @@ public class PlatformPlayer implements Player
 		public void setLoopCount(int count)
 		{
 			
-			//System.out.println("设置播放次数");
 			//System.out.println(bgmFileName+":"+count);
 			loops = count;
 			

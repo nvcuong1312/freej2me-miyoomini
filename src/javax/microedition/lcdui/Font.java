@@ -185,7 +185,6 @@ public final class Font
 
 	public int stringWidth(String str)
 	{
-		//System.out.println("对话:"+str+" size:"+size);
 		//return fm.stringWidth(str);
 		if(str==null)
 		{
